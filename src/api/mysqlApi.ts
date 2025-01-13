@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import mysql from 'mysql';
 
 const app = express();
@@ -13,10 +13,7 @@ const db = mysql.createConnection({
 });
 
 // Connect to the database
-// Connect to the database
-// Connect to the database
-// Connect to the database
-db.connect((err) => {
+db.connect((err: mysql.MysqlError) => {
   if (err) {
     console.error('Error connecting to the database:', err);
     return;
@@ -25,9 +22,9 @@ db.connect((err) => {
 });
 
 // Define a route to fetch data
-app.get('/api/data', (req, res) => {
+app.get('/api/data', (req: Request, res: Response) => {
   const query = 'SELECT * FROM your_table';
-  db.query(query, (err, results) => {
+  db.query(query, (err: mysql.MysqlError, results: any) => {
     if (err) {
       console.error('Error fetching data:', err);
       res.status(500).json({ error: 'Failed to fetch data' });
