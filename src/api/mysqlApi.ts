@@ -22,7 +22,7 @@ db.connect((err: mysql.MysqlError) => {
 });
 
 // Define a route to fetch data
-app.get('/api/data', (req: Request, res: Response) => {
+app.get('/api/data', (_req: Request, res: Response) => {
   const query = 'SELECT * FROM your_table';
   db.query(query, (err: mysql.MysqlError, results: any) => {
     if (err) {
